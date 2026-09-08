@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f8f5eb"/>
+  <circle cx="1030" cy="330" r="250" fill="#e9e9d4"/>
+  <path d="M993 447c-56-159 64-273 116-273-1 136-40 238-116 273Z" fill="#602e38"/>
+  <path d="M996 411c-109-24-134-107-110-156 96 6 139 88 110 156Z" fill="#8b925e"/>
+  <text x="82" y="101" fill="#602e38" font-family="Arial,sans-serif" font-weight="900" font-size="38" letter-spacing="-2">GOODSHRUB</text>
+  <text x="78" y="280" fill="#602e38" font-family="Georgia,serif" font-size="106">Good things</text>
+  <text x="78" y="394" fill="#602e38" font-family="Georgia,serif" font-size="106" font-style="italic">are growing.</text>
+  <text x="83" y="528" fill="#602e38" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">OUR WEBSITE IS COMING SOON</text>
+</svg>

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.next/
+out/
+hostinger/
+.local/
+test-results/
+playwright-report/
+.DS_Store
+.env*
+!.env.example
+design/previews/
