@@ -24,7 +24,7 @@ test('the coming-soon page loads its brand assets locally without errors', async
 });
 
 test('heading and tea controls fit phone, tablet and prototype dimensions', async ({ page }) => {
-  for (const [width, height] of [[320, 568], [375, 667], [390, 844], [757, 426], [768, 1024], [1024, 768], [1440, 900], [1920, 1080]]) {
+  for (const [width, height] of [[320, 568], [375, 667], [390, 844], [757, 426], [768, 1024], [1024, 768], [1440, 900], [1536, 694], [1920, 868], [1920, 1080]]) {
     await page.setViewportSize({ width, height });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
@@ -34,7 +34,8 @@ test('heading and tea controls fit phone, tablet and prototype dimensions', asyn
       const bounds = await element.boundingBox();
       expect(bounds.x, `Content stays in view at ${width}px`).toBeGreaterThanOrEqual(0);
       expect(bounds.x + bounds.width).toBeLessThanOrEqual(width);
-      if (width > 700) expect(bounds.y + bounds.height).toBeLessThanOrEqual(height);
+      const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+      expect(bounds.y + bounds.height).toBeLessThanOrEqual(documentHeight);
     }
 
     const heading = await page.getByRole('heading', { level: 1 }).boundingBox();
@@ -45,9 +46,12 @@ test('heading and tea controls fit phone, tablet and prototype dimensions', asyn
     expect(heading.y + heading.height).toBeLessThanOrEqual(stage.y);
     expect(heading.y + heading.height).toBeLessThanOrEqual(details.y);
 
-    if (width > 700) {
-      expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight + 1), `Desktop page fits a single screen at ${width}px`).toBe(true);
-    }
+    const artworkWidthRatio = await page.locator('.details-green-tea').evaluate((image) => {
+      const bounds = image.getBoundingClientRect();
+      const renderedWidth = Math.min(bounds.width, bounds.height * image.naturalWidth / image.naturalHeight);
+      return renderedWidth / bounds.width;
+    });
+    expect(artworkWidthRatio, `Artwork fills its column at ${width} by ${height}`).toBeGreaterThanOrEqual(.98);
   }
 });
 
