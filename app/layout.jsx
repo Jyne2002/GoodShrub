@@ -13,13 +13,14 @@ export const metadata = {
   twitter: { card: 'summary' },
 };
 
-export const viewport = { themeColor: '#48564d' };
+export const viewport = { themeColor: '#49574d' };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preload" href="/assets/brand/green-tea.png" as="image" fetchPriority="high" />
+        <link rel="preload" href="/assets/poppins-latin-600.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/assets/poppins-latin-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>{children}</body>
     </html>

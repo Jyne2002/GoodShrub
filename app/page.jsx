@@ -1,18 +1,7 @@
-import TeaPicker from './components/tea-picker';
-
 const teas = [
-  {
-    id: 'green-tea', name: 'Green Tea', width: 669, height: 601,
-    details: 'A classic Chinese Chunmee Green. Grown 500 meters above sea level in the Golden Triangle region, this green tea offers a smooth chestnut flavor. Its glossy, tightly rolled leaves deliver a bright green brew that is fresh and rich with a brisk, sweet aftertaste that lingers. Single origin premium iced tea. Source: Jiangxi Province, China, Green Tea Golden Triangle.',
-  },
-  {
-    id: 'da-hong-pao', name: 'Da Hong Pao', width: 664, height: 598,
-    details: 'The world’s most exclusive Oolong. Roasted and rich with natural energy, this rare tea from China’s Wuyi Mountains is usually reserved for rituals and collectors. Now served cold brewed and gently sparkling for a clean, luxury brew on the go. Single origin premium iced tea. Source: South East China, Zheng Yan, Wuyi Mountains.',
-  },
-  {
-    id: 'ceylon-black', name: 'Ceylon Black', width: 673, height: 602,
-    details: 'Grown in a rich tropical rainforest. This bold, smooth and naturally flavour rich tea blends the purity of Sri Lanka’s Lumbini Valley with a refreshing sparkle. Its slow-release infusion reveals layered complexity, strength and a remarkable aroma in every sip. Single origin premium iced tea. Source: South West Sri Lanka, UNESCO Sinharaja Rainforest.',
-  },
+  { id: 'green-tea', name: 'Green Tea', height: 505 },
+  { id: 'da-hong-pao', name: 'Da Hong Pao', height: 506 },
+  { id: 'ceylon-black', name: 'Ceylon Black', height: 506 },
 ];
 
 export default function HomePage() {
@@ -29,51 +18,74 @@ export default function HomePage() {
             alt="Goodshrub"
           />
         </a>
+        <a className="inquire-link" href="https://www.instagram.com/goodshrub/" target="_blank" rel="noopener noreferrer">Inquire Now</a>
       </header>
 
-      <main className="coming-soon" id="main">
-        <h1>Something good is brewing.</h1>
-
+      <main className="coming-soon" id="main" tabIndex={-1}>
         <img
           className="background-pattern"
-          src="/assets/brand/pattern.png"
+          src="/assets/brand/brewing-pattern.png"
           width="1920"
           height="768"
           alt=""
           aria-hidden="true"
         />
 
+        <h1>
+          <span className="headline-artwork headline-start">
+            <img
+              src="/assets/brand/brewing-headline.png"
+              width="1271"
+              height="105"
+              alt="Something is brewing"
+              fetchPriority="high"
+            />
+          </span>
+          <span className="headline-artwork headline-end" aria-hidden="true">
+            <img
+              src="/assets/brand/brewing-headline.png"
+              width="1271"
+              height="105"
+              alt=""
+            />
+          </span>
+          <span className="brewing-dots" aria-hidden="true">
+            <span /><span /><span />
+          </span>
+        </h1>
+
         <div className="product-stage">
           {teas.map((tea) => (
             <img
               key={tea.id}
               className={`product-can can-${tea.id}`}
-              src={`/assets/brand/${tea.id}.png`}
-              width="792"
-              height="792"
-              alt={`Goodshrub ${tea.name} sparkling iced tea can`}
-              fetchPriority={tea.id === 'green-tea' ? 'high' : 'auto'}
+              src={`/assets/brand/${tea.id}-can.png`}
+              width="843"
+              height={tea.height}
+              alt={`Goodshrub ${tea.name} sparkling cold brew tea can`}
+              fetchPriority="high"
             />
           ))}
         </div>
-
-        <div className="coming-soon-copy">
-          <div className="tea-details">
-            {teas.map((tea) => (
-              <img
-                key={tea.id}
-                className={`tea-information details-${tea.id}`}
-                src={`/assets/brand/${tea.id}-details.png`}
-                width={tea.width}
-                height={tea.height}
-                alt={`${tea.name} tasting notes and origin. ${tea.details}`}
-              />
-            ))}
-          </div>
-
-          <TeaPicker teas={teas.map(({ id, name }) => ({ id, name }))} />
-        </div>
       </main>
+
+      <footer className="site-footer">
+        <div className="footer-content">
+          <div className="footer-copy">
+            <p>A Product of Akbar Brothers (Pvt) Ltd</p>
+            <p>No. 334, T.B Jayah Mawatha, <br />Colombo 10, Sri Lanka</p>
+            <p>This product is sustainably grown <br />and responsibly made</p>
+          </div>
+          <span className="certification-badge">
+            <img
+              src="/assets/brand/footer-artwork.png"
+              width="1861"
+              height="74"
+              alt="Rainforest Alliance Certified"
+            />
+          </span>
+        </div>
+      </footer>
     </>
   );
 }

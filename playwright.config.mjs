@@ -14,7 +14,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: 'node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 3100',
+    command: 'node scripts/serve-export.mjs',
     url: 'http://127.0.0.1:3100',
     reuseExistingServer: !process.env.CI,
   },
