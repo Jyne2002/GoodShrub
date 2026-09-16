@@ -43,7 +43,8 @@ test('the headline and three cans fit the first screen, with only the footer bel
     const cans = await page.locator('.product-can').evaluateAll((images) => images.map((image) => {
       const box = image.getBoundingClientRect();
       const scale = box.width / image.naturalWidth;
-      return { left: box.x + 237 * scale, right: box.x + 611 * scale, top: box.y + 66 * scale, labelBottom: box.y + 397 * scale, bottom: box.bottom };
+      const artworkLeft = image.classList.contains('can-green-tea') ? 154 : 465;
+      return { left: box.x + artworkLeft * scale, right: box.x + (artworkLeft + 502) * scale, top: box.y + 337 * scale, labelBottom: box.y + 700 * scale, bottom: box.bottom };
     }));
     for (const can of cans) {
       expect(can.left, `Can stays in view at ${width}px`).toBeGreaterThanOrEqual(-1);
@@ -55,9 +56,15 @@ test('the headline and three cans fit the first screen, with only the footer bel
     }
     expect(cans[0].right).toBeLessThanOrEqual(cans[1].left + 2);
     expect(cans[1].right).toBeLessThanOrEqual(cans[2].left + 2);
-    const inquiry = await page.getByRole('link', { name: 'Inquire Now' }).boundingBox();
+    const inquiry = await page.getByRole('link', { name: 'Inquire Now at (+94)11 2697151' }).boundingBox();
+    const instagram = await page.getByRole('link', { name: 'Follow Us on Instagram' }).boundingBox();
     const brand = await page.getByRole('link', { name: 'Goodshrub home' }).boundingBox();
-    expect(brand.x + brand.width).toBeLessThan(inquiry.x);
+    for (const link of [inquiry, instagram]) {
+      expect(link.x).toBeGreaterThanOrEqual(0);
+      expect(link.x + link.width).toBeLessThanOrEqual(width);
+      expect(link.y + link.height).toBeLessThanOrEqual(header.height);
+      expect(link.x >= brand.x + brand.width || link.y >= brand.y + brand.height).toBe(true);
+    }
     await page.locator('.site-footer').scrollIntoViewIfNeeded();
     const revealedFooter = await page.locator('.site-footer').boundingBox();
     expect(revealedFooter.y + revealedFooter.height).toBeLessThanOrEqual(height + 1);
@@ -75,7 +82,9 @@ test('touch devices have readable portrait and landscape layouts', async ({ brow
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${name} has no horizontal scrolling`).toBe(true);
       const footer = await page.locator('.site-footer').boundingBox();
       expect(footer.y, `${name} fits the main content on its first screen`).toBeCloseTo(viewport.height, 0);
-      expect((await page.getByRole('link', { name: 'Inquire Now' }).boundingBox()).height).toBeGreaterThanOrEqual(44);
+      for (const name of ['Inquire Now at (+94)11 2697151', 'Follow Us on Instagram']) {
+        expect((await page.getByRole('link', { name }).boundingBox()).height).toBeGreaterThanOrEqual(44);
+      }
       expect(await page.locator('.footer-copy').evaluate((element) => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(12);
 
       if (viewport.width <= 1024 && viewport.height >= viewport.width) {
@@ -93,17 +102,21 @@ test('touch devices have readable portrait and landscape layouts', async ({ brow
   }
 });
 
-test('Inquire Now links to the requested Instagram page and supports the keyboard', async ({ page }) => {
+test('phone and Instagram links have the correct destinations and support the keyboard', async ({ page }) => {
   await page.goto('/');
-  const inquiry = page.getByRole('link', { name: 'Inquire Now' });
-  await expect(inquiry).toHaveAttribute('href', 'https://www.instagram.com/goodshrub/');
-  await expect(inquiry).toHaveAttribute('target', '_blank');
+  const inquiry = page.getByRole('link', { name: 'Inquire Now at (+94)11 2697151' });
+  const instagram = page.getByRole('link', { name: 'Follow Us on Instagram' });
+  await expect(inquiry).toHaveAttribute('href', 'tel:+94112697151');
+  await expect(instagram).toHaveAttribute('href', 'https://www.instagram.com/goodshrub/');
+  await expect(instagram).toHaveAttribute('target', '_blank');
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Goodshrub home' })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(inquiry).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(instagram).toBeFocused();
 });
 
 test('dots appear one at a time, reset together, and never move the headline', async ({ page }) => {
@@ -150,7 +163,8 @@ test('the page, all three cans and inquiry link work without JavaScript', async 
     for (const tea of ['Green Tea', 'Da Hong Pao', 'Ceylon Black']) {
       await expect(page.getByRole('img', { name: `Goodshrub ${tea} sparkling cold brew tea can` })).toBeVisible();
     }
-    await expect(page.getByRole('link', { name: 'Inquire Now' })).toHaveAttribute('href', 'https://www.instagram.com/goodshrub/');
+    await expect(page.getByRole('link', { name: 'Inquire Now at (+94)11 2697151' })).toHaveAttribute('href', 'tel:+94112697151');
+    await expect(page.getByRole('link', { name: 'Follow Us on Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/goodshrub/');
   } finally {
     await context.close();
   }

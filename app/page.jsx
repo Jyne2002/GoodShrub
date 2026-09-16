@@ -1,7 +1,7 @@
 const teas = [
-  { id: 'green-tea', name: 'Green Tea', height: 505 },
-  { id: 'da-hong-pao', name: 'Da Hong Pao', height: 506 },
-  { id: 'ceylon-black', name: 'Ceylon Black', height: 506 },
+  { id: 'green-tea', name: 'Green Tea', width: 1157, artworkLeft: 154 },
+  { id: 'ceylon-black', name: 'Ceylon Black', width: 1468, artworkLeft: 465 },
+  { id: 'da-hong-pao', name: 'Da Hong Pao', width: 1088, artworkLeft: 465 },
 ];
 
 export default function HomePage() {
@@ -18,7 +18,15 @@ export default function HomePage() {
             alt="Goodshrub"
           />
         </a>
-        <a className="inquire-link" href="https://www.instagram.com/goodshrub/" target="_blank" rel="noopener noreferrer">Inquire Now</a>
+        <nav className="header-actions" aria-label="Contact Goodshrub">
+          <a className="contact-link inquire-link" href="tel:+94112697151">
+            <img src="/assets/brand/inquire-phone.png" width="453" height="30" alt="Inquire Now at (+94)11 2697151" />
+          </a>
+          <span className="contact-divider" aria-hidden="true" />
+          <a className="contact-link instagram-link" href="https://www.instagram.com/goodshrub/" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/brand/follow-instagram.png" width="341" height="29" alt="Follow Us on Instagram" />
+          </a>
+        </nav>
       </header>
 
       <main className="coming-soon" id="main" tabIndex={-1}>
@@ -60,8 +68,9 @@ export default function HomePage() {
               key={tea.id}
               className={`product-can can-${tea.id}`}
               src={`/assets/brand/${tea.id}-can.png`}
-              width="843"
-              height={tea.height}
+              width={tea.width}
+              height="787"
+              style={{ '--source-width': tea.width, '--source-left': tea.artworkLeft }}
               alt={`Goodshrub ${tea.name} sparkling cold brew tea can`}
               fetchPriority="high"
             />
