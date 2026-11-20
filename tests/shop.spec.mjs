@@ -33,12 +33,12 @@ test('product navigation and cart persist across pages and reloads', async ({ pa
 test('contact form opens a WhatsApp message for the supplied number', async ({ page }) => {
   await page.goto('/contact/');
   await page.getByLabel('Name').fill('Tea Fan');
-  await page.getByLabel('Email').fill('tea@example.com');
+  await expect(page.getByLabel('Email')).toHaveCount(0);
   await page.getByLabel('Message').fill('Hello Goodshrub');
   const url = await page.evaluate(() => new Promise((resolve) => { window.open = (url) => resolve(url); document.querySelector('form').requestSubmit(); }));
   expect(url).toContain('https://wa.me/94777708448?text=');
   expect(decodeURIComponent(url)).toContain('Tea Fan');
-  expect(decodeURIComponent(url)).toContain('tea@example.com');
+  expect(decodeURIComponent(url)).not.toContain('Email:');
   expect(decodeURIComponent(url)).toContain('Hello Goodshrub');
 });
 

@@ -409,7 +409,7 @@ body {
 .site-header { z-index: 20; gap: 24px; }
 .brand img { width: clamp(160px, 18vw, 300px); }
 .header-actions { gap: clamp(10px, 1.5vw, 26px); color: var(--cream); }
-.nav-link, .product-menu summary { color: inherit; font-size: .9rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.nav-link, .product-menu summary { color: inherit; font-size: 1.05rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .nav-link:hover, .product-menu summary:hover, .icon-link:hover { opacity: .72; }
 .product-menu { position: relative; }
 .product-menu summary { display: flex; align-items: center; gap: 9px; cursor: pointer; list-style: none; min-height: 44px; }
@@ -430,15 +430,25 @@ body {
 .inner-page h1 { font-size: clamp(3rem, 6vw, 6.6rem); margin-bottom: 22px; }
 .inner-page h2 { font-size: clamp(2rem, 3vw, 3rem); }
 .eyebrow { color: #576c55; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
-.breadcrumb { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; color: #647263; font-size: .8rem; }
-.breadcrumb a { color: inherit; }
+.product-page { position: relative; isolation: isolate; padding-bottom: 45px; }
+.product-page::before, .contact-page::before { content: ""; position: absolute; z-index: -1; inset: 0 0 auto; height: min(800px, 100%); background: url("/assets/brand/pattern.png") center top / cover no-repeat; opacity: .16; mask-image: linear-gradient(to bottom, #000 60%, transparent); pointer-events: none; }
 .product-layout { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .85fr); gap: clamp(45px, 8vw, 130px); align-items: center; }
-.product-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 610px; overflow: hidden; background: var(--product-color); }
+.product-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 610px; overflow: hidden; background: color-mix(in srgb, var(--product-color) 35%, white); }
 .product-visual::before { content: ''; position: absolute; width: 70%; aspect-ratio: 1; border: 1px solid #ffffff85; border-radius: 50%; }
 .product-visual img { position: relative; width: min(85%, 560px); height: auto; }
+.product-visual-photo::before { display: none; }
+.product-visual.product-visual-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumbnails { display: flex; gap: 10px; margin-top: 12px; }
+.gallery-thumbnail { width: 76px; height: 76px; padding: 0; overflow: hidden; border: 2px solid transparent; background: #fff; cursor: pointer; }
+.gallery-thumbnail[aria-pressed="true"] { border-color: #344b3b; }
+.gallery-thumbnail:focus-visible { outline: 2px solid #344b3b; outline-offset: 3px; }
+.gallery-thumbnail img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumbnail-can { background: color-mix(in srgb, var(--product-color) 35%, white); }
+.gallery-thumbnail-can img { object-fit: contain; }
+
 .visual-label { position: absolute; top: 30px; left: 32px; color: #405344; font-size: .7rem; font-weight: 600; line-height: 1.4; letter-spacing: .1em; }
-.product-info { max-width: 560px; padding: 20px 0; }
-.product-info h1 { color: #334b3b; }
+.product-info { max-width: 560px; padding: 20px 0; container-type: inline-size; }
+.product-page .product-info h1 { color: #334b3b; font-size: clamp(1.65rem, 12cqi, 5.5rem); white-space: nowrap; }
 .product-subtitle { font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 600; line-height: 1.3; }
 .product-description, .contact-intro > p:not(.eyebrow), .contact-card > p:not(.eyebrow), .cart-summary p, .empty-cart p { color: #515b50; font-size: 1rem; line-height: 1.8; }
 .product-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; padding: 22px 0; border-top: 1px solid #cbd3c4; border-bottom: 1px solid #cbd3c4; }
@@ -459,10 +469,6 @@ body {
 .added-message { min-height: 30px; padding-top: 8px; color: #344b3b; font-size: .85rem; }
 .added-message a { color: inherit; font-weight: 600; }
 .product-footnote { margin-top: 15px; color: #60715e; font-size: .8rem; }
-.more-teas { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-top: 95px; padding-top: 35px; border-top: 1px solid #cbd3c4; }
-.more-teas h2 { margin-bottom: 0; }
-.more-tea-links { display: flex; flex-wrap: wrap; gap: 25px; }
-.more-tea-links a { color: #344b3b; font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 6px; }
 .page-intro { margin: 20px 0 55px; }
 .page-intro > p:last-child { color: #59665a; }
 .accent-dot { color: #8aa478; }
@@ -489,7 +495,7 @@ body {
 .empty-cart { padding: 55px; background: #e3eadc; }
 .empty-cart h2 { margin-bottom: 15px; }
 .empty-cart .button { margin-top: 12px; }
-.contact-page { background: #e5ebdf; }
+.contact-page { position: relative; isolation: isolate; background: #e5ebdf; }
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 9vw, 150px); align-items: center; max-width: 1300px; margin: 40px auto; }
 .contact-intro h1 { color: #344b3b; }
 .contact-intro > p:not(.eyebrow) { max-width: 450px; }
@@ -518,17 +524,16 @@ body {
   .brand { min-height: 42px; }
   .brand img { width: 170px; }
   .header-actions { flex: 0 0 100%; justify-content: space-between; gap: 5px; }
-  .header-actions .nav-link, .product-menu summary { font-size: .8rem; }
+  .header-actions .nav-link, .product-menu summary { font-size: .9rem; }
   .icon-link { width: 36px; }
   .icon-link svg { width: 21px; height: 21px; }
   .inner-page { padding: 30px 6% 70px; }
+  .product-page { padding-bottom: 35px; }
   .inner-page h1 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
   .product-visual { min-height: 360px; }
   .product-visual img { width: min(90%, 400px); }
   .product-layout { gap: 24px; }
   .product-meta { gap: 10px; }
-  .more-teas { display: block; margin-top: 60px; }
-  .more-tea-links { margin-top: 25px; }
   .cart-layout { grid-template-columns: 1fr; gap: 30px; }
   .cart-item { gap: 15px; }
   .cart-image { flex-basis: 105px; height: 135px; }
