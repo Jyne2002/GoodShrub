@@ -1,28 +1,14 @@
-import './globals.css';
+﻿import './globals.css';
+import { Header, Footer } from './components/SiteChrome';
 
 export const metadata = {
-  title: 'Goodshrub — Coming soon',
-  description: 'Goodshrub sparkling iced tea. Our website is coming soon.',
+  title: 'Goodshrub | Sparkling iced tea',
+  description: 'Discover Goodshrub single-origin sparkling iced teas.',
   icons: { icon: '/favicon.svg' },
-  openGraph: {
-    type: 'website',
-    siteName: 'Goodshrub',
-    title: 'Goodshrub — Coming soon',
-    description: 'Goodshrub sparkling iced tea. Our website is coming soon.',
-  },
+  openGraph: { type: 'website', siteName: 'Goodshrub', title: 'Goodshrub | Sparkling iced tea', description: 'Discover Goodshrub single-origin sparkling iced teas.' },
   twitter: { card: 'summary' },
 };
-
 export const viewport = { themeColor: '#49574d' };
-
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <head>
-        <link rel="preload" href="/assets/poppins-latin-600.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/assets/poppins-latin-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-      </head>
-      <body>{children}</body>
-    </html>
-  );
+  return <html lang="en"><body><a className="skip-link" href="#main">Skip to content</a><Header />{children}<Footer /></body></html>;
 }
