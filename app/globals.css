@@ -108,7 +108,7 @@ body {
 .background-pattern {
   position: absolute;
   z-index: -1;
-  top: 17.5%;
+  top: 8%;
   left: 0;
   display: block;
   width: 100%;
@@ -119,14 +119,15 @@ body {
 }
 
 .coming-soon h1 {
-  --headline-width: min(66.5vw, calc(var(--hero-height) * 1.8), 1271px);
   position: absolute;
   z-index: 1;
-  top: 28.5%;
+  top: 12%;
   left: 50%;
   display: flex;
-  width: var(--headline-width);
-  height: calc(var(--headline-width) * 105 / 1271);
+  align-items: flex-end;
+  justify-content: center;
+  width: 92vw;
+  height: auto;
   margin: 0;
   transform: translateX(-50%);
 }
@@ -134,36 +135,57 @@ body {
 /* Keep the supplied lettering intact; crop off its three printed dots. */
 .headline-artwork {
   flex: none;
-  height: calc(var(--headline-width) * 105 / 1271);
-  overflow: hidden;
+  width: min(82vw, 1550px);
+  height: auto;
 }
-
-.headline-start { width: calc(var(--headline-width) * 740 / 1271); }
-.headline-end { width: calc(var(--headline-width) * 431 / 1271); }
 
 .headline-artwork img {
   display: block;
-  width: var(--headline-width);
+  width: 100%;
   height: auto;
   max-width: none;
+  opacity: .82;
 }
 
-.headline-end img { margin-left: calc(var(--headline-width) * -740 / 1271); }
+.homepage-availability {
+  position: absolute;
+  z-index: 2;
+  top: calc(12% + min(82vw, 1550px) * 88 / 1678 + 18px);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.homepage-availability p {
+  margin: 0 0 14px;
+  color: #344b3b;
+  font: 600 clamp(1.15rem, 1.5vw, 1.5rem) "Poppins", sans-serif;
+  letter-spacing: .04em;
+}
+
+.homepage-availability .button {
+  min-height: 44px;
+  padding: 10px 24px;
+  font-size: clamp(.9rem, 1vw, 1.05rem);
+}
 
 .brewing-dots {
   display: flex;
   flex: none;
   justify-content: space-between;
-  width: calc(var(--headline-width) * 93 / 1271);
-  height: calc(var(--headline-width) * 27 / 1271);
-  margin-top: calc(var(--headline-width) * 54 / 1271);
-  margin-left: calc(var(--headline-width) * 7 / 1271);
+  width: clamp(38px, 3.4vw, 64px);
+  height: clamp(11px, 1.25vw, 19px);
+  margin-bottom: clamp(4px, .35vw, 7px);
+  margin-left: clamp(8px, .8vw, 14px);
 }
 
 /* Every dot keeps its space, so the headline never shifts as they appear. */
 .brewing-dots span {
   flex: none;
-  width: calc(var(--headline-width) * 27 / 1271);
+  width: 27%;
   height: 100%;
   border-radius: 50%;
   background: var(--ink);
@@ -331,7 +353,7 @@ body {
   }
 
   .background-pattern {
-    top: 14%;
+    top: 8%;
     left: 50%;
     width: max(100%, 800px);
     height: auto;
@@ -340,17 +362,20 @@ body {
 
   .coming-soon h1 {
     --headline-width: min(156vw, calc(var(--hero-height) * 2.4), 1450px);
-    top: calc((100% - var(--mobile-stage-height)) / 2);
-    flex-wrap: wrap;
+    top: 12%;
+    flex-wrap: nowrap;
     justify-content: center;
-    row-gap: calc(var(--headline-width) * 12 / 1271);
-    width: calc(var(--headline-width) * 695 / 1271);
-    height: calc(var(--headline-width) * 222 / 1271);
-    transform: translate(-50%, -50%);
+    align-items: flex-end;
+    width: 92vw;
+    height: auto;
+    transform: translateX(-50%);
   }
 
-  /* Crop the same supplied image into two lines; keep the dots on line two. */
-  .headline-start { width: 100%; }
+  .headline-artwork { width: 82vw; }
+
+  .homepage-availability {
+    top: calc(12% + 82vw * 88 / 1678 + 12px);
+  }
 
   .product-stage {
     --can-canvas: 1594;
@@ -409,7 +434,7 @@ body {
 .site-header { z-index: 20; gap: 24px; }
 .brand img { width: clamp(160px, 18vw, 300px); }
 .header-actions { gap: clamp(10px, 1.5vw, 26px); color: var(--cream); }
-.nav-link, .product-menu summary { color: inherit; font-size: 1.05rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.nav-link, .product-menu summary { color: inherit; font-size: 1.2rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
 .nav-link:hover, .product-menu summary:hover, .icon-link:hover { opacity: .72; }
 .product-menu { position: relative; }
 .product-menu summary { display: flex; align-items: center; gap: 9px; cursor: pointer; list-style: none; min-height: 44px; }
@@ -420,8 +445,26 @@ body {
 .product-dropdown a { display: block; padding: 12px 14px; color: var(--header); font-size: .9rem; font-weight: 600; text-decoration: none; }
 .product-dropdown a:hover, .product-dropdown a:focus-visible { background: #e5ecde; }
 .nav-divider { width: 1px; height: 26px; background: #fcf9f170; }
-.icon-link { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 44px; color: var(--cream); }
-.icon-link svg { width: 23px; height: 23px; }
+.icon-link { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 44px; color: var(--cream); }
+.icon-link img { width: 23px; height: 23px; filter: brightness(0) invert(1); }
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  display: grid;
+  min-width: 18px;
+  height: 18px;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  color: var(--header);
+  background: var(--cream);
+  box-shadow: 0 0 0 1px var(--header);
+  font: 600 .65rem/1 "Poppins", sans-serif;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  animation: cart-badge-in .24s cubic-bezier(.2, .7, .2, 1) both;
+}
 .site-header a:focus-visible, .site-header summary:focus-visible { outline: 2px solid var(--cream); outline-offset: 3px; }
 .site-header .product-dropdown a:focus-visible { outline-color: var(--header); }
 .inner-page { width: 100%; flex: 1; padding: 48px max(6%, calc((100% - 1400px) / 2)) 100px; background: var(--cream); }
@@ -524,9 +567,9 @@ body {
   .brand { min-height: 42px; }
   .brand img { width: 170px; }
   .header-actions { flex: 0 0 100%; justify-content: space-between; gap: 5px; }
-  .header-actions .nav-link, .product-menu summary { font-size: .9rem; }
+  .header-actions .nav-link, .product-menu summary { font-size: 1rem; }
   .icon-link { width: 36px; }
-  .icon-link svg { width: 21px; height: 21px; }
+  .icon-link img { width: 21px; height: 21px; }
   .inner-page { padding: 30px 6% 70px; }
   .product-page { padding-bottom: 35px; }
   .inner-page h1 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
@@ -543,4 +586,104 @@ body {
 }
 @media (min-width: 601px) and (max-width: 800px) {
   :root { --header-height: 104px; }
+}
+
+@keyframes header-arrive {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-heading-arrive {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes availability-arrive {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes can-arrive {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dropdown-arrive {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cart-badge-in {
+  0% { opacity: 0; transform: scale(.65); }
+  65% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.site-header { animation: header-arrive .55s cubic-bezier(.2, .7, .2, 1) both; }
+.background-pattern { animation: fade-in .9s ease-out both; }
+.coming-soon h1 { animation: hero-heading-arrive .75s .08s cubic-bezier(.2, .7, .2, 1) both; }
+.homepage-availability { animation: availability-arrive .65s .18s cubic-bezier(.2, .7, .2, 1) both; }
+.product-can { animation: can-arrive .8s cubic-bezier(.2, .7, .2, 1) both; }
+.can-green-tea { animation-delay: .12s; }
+.can-ceylon-black { animation-delay: .24s; }
+.can-da-hong-pao { animation-delay: .36s; }
+.page-intro, .empty-cart, .contact-intro, .product-gallery, .cart-items { animation: rise-in .6s cubic-bezier(.2, .7, .2, 1) both; }
+.contact-card, .product-info, .cart-summary { animation: rise-in .6s .12s cubic-bezier(.2, .7, .2, 1) both; }
+.cart-item { animation: rise-in .45s cubic-bezier(.2, .7, .2, 1) both; }
+.cart-item:nth-child(2) { animation-delay: .08s; }
+.cart-item:nth-child(3) { animation-delay: .16s; }
+.product-menu[open] .product-dropdown { animation: dropdown-arrive .2s ease-out both; }
+
+.brand img, .site-header .nav-link, .product-menu summary, .icon-link,
+.product-dropdown a, .button, .quantity-control button, .text-button,
+.continue-link, .contact-details a, .cart-item-info h2 a {
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease,
+    box-shadow .2s ease, opacity .2s ease, transform .2s ease;
+}
+
+.site-header .brand:hover img { transform: scale(1.025); }
+.header-actions > .nav-link:hover, .product-menu summary:hover { transform: translateY(-2px); }
+.icon-link:hover { transform: translateY(-2px); }
+.icon-link img { transition: transform .2s ease; }
+.icon-link:hover img { transform: scale(1.08); }
+.product-menu summary .chevron { transition: transform .2s ease; }
+.product-dropdown a:hover { transform: translateX(3px); }
+
+.button { transition-duration: .22s; }
+.button:hover { transform: translateY(-2px); box-shadow: 0 7px 18px #344b3b26; }
+.button:active { transform: translateY(0) scale(.98); box-shadow: none; }
+.quantity-control button:hover { background: #eef2eb; }
+.quantity-control button:active { transform: scale(.94); }
+.text-button:hover, .continue-link:hover, .contact-details a:hover,
+.cart-item-info h2 a:hover { opacity: .72; }
+
+.product-visual img { transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+.product-visual:hover img { transform: scale(1.025); }
+.gallery-thumbnail { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.gallery-thumbnail:hover { transform: translateY(-3px); box-shadow: 0 6px 16px #2839291f; }
+.cart-image img { transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.cart-image:hover img { transform: scale(1.04); }
+.contact-card input, .contact-card textarea {
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.contact-card :is(input, textarea):focus { box-shadow: 0 0 0 4px #718b6b24; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: 0s !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
 }

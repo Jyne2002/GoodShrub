@@ -5,5 +5,7 @@
 ];
 
 export const whatsappNumber = '94777708448';
+export const CART_STORAGE_KEY = 'goodshrub-cart-packs';
+export const CART_UPDATED_EVENT = 'goodshrub-cart-updated';
 export const formatPrice = (price) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
 export const whatsappLink = (message = '') => `https://wa.me/${whatsappNumber}${message ? `?text=${encodeURIComponent(message)}` : ''}`;

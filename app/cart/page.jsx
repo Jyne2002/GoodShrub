@@ -1,11 +1,11 @@
 ﻿'use client';
 import { useEffect, useState } from 'react';
-import { products, whatsappLink, formatPrice } from '../products';
+import { products, whatsappLink, formatPrice, CART_STORAGE_KEY, CART_UPDATED_EVENT } from '../products';
 
 export default function CartPage() {
   const [cart, setCart] = useState(null);
-  useEffect(() => { try { setCart(JSON.parse(localStorage.getItem('goodshrub-cart-packs') || '{}') || {}); } catch { setCart({}); } }, []);
-  function update(id, quantity) { const next = { ...cart }; if (quantity <= 0) delete next[id]; else next[id] = Math.min(99, quantity); setCart(next); localStorage.setItem('goodshrub-cart-packs', JSON.stringify(next)); }
+  useEffect(() => { try { setCart(JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '{}') || {}); } catch { setCart({}); } }, []);
+  function update(id, quantity) { const next = { ...cart }; if (quantity <= 0) delete next[id]; else next[id] = Math.min(99, quantity); setCart(next); localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(next)); window.dispatchEvent(new Event(CART_UPDATED_EVENT)); }
   const items = products.filter((product) => Number(cart?.[product.id]) > 0);
   const total = items.reduce((sum, item) => sum + item.price * Number(cart[item.id]), 0);
   const message = `Hello Goodshrub! I’d like to ask about these teas:\n${items.map((item) => `- ${item.name}: ${cart[item.id]} ${Number(cart[item.id]) === 1 ? '12-pack' : '12-packs'}`).join('\n')}\nPlease let me know about availability.`;

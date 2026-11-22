@@ -30,6 +30,18 @@ test('product navigation and cart persist across pages and reloads', async ({ pa
   await expect(page.getByText('Nothing brewing here yet.')).toBeVisible();
 });
 
+test('cart icon shows the total packs and updates when cart quantities change', async ({ page }) => {
+  await page.goto('/products/green-tea/');
+  await page.locator('#quantity').fill('2');
+  await page.getByRole('button', { name: 'Add to cart' }).click();
+  await expect(page.getByRole('link', { name: 'Shopping cart, 2 items' })).toContainText('2');
+  await page.getByRole('link', { name: 'Shopping cart, 2 items' }).click();
+  await page.getByRole('button', { name: 'Increase Green Tea quantity' }).click();
+  await expect(page.getByRole('link', { name: 'Shopping cart, 3 items' })).toContainText('3');
+  await page.reload();
+  await expect(page.getByRole('link', { name: 'Shopping cart, 3 items' })).toContainText('3');
+});
+
 test('contact form opens a WhatsApp message for the supplied number', async ({ page }) => {
   await page.goto('/contact/');
   await page.getByLabel('Name').fill('Tea Fan');
