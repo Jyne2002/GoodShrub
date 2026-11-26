@@ -1,11 +1,13 @@
 ﻿import { products, whatsappLink } from '../products';
 import CartIconLink from './CartIconLink';
+import ProductMenu from './ProductMenu';
 
 export function Header() {
   return <header className="site-header">
     <a className="brand" href="/" aria-label="Goodshrub home"><img src="/assets/brand/goodshrub-logo.png" width="403" height="48" alt="Goodshrub" /></a>
     <nav className="header-actions" aria-label="Main navigation">
-      <details className="product-menu"><summary>Our teas <span className="chevron" aria-hidden="true" /></summary><div className="product-dropdown">{products.map((product) => <a key={product.id} href={`/products/${product.id}/`}>{product.name}</a>)}</div></details>
+      <a className="nav-link" href="/products/">All Products</a>
+      <ProductMenu products={products.map(({ id, name }) => ({ id, name }))} />
       <a className="nav-link" href="/contact/">Contact us</a>
       <span className="nav-divider" aria-hidden="true" />
       <CartIconLink />
