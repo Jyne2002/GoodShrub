@@ -51,7 +51,7 @@
   },
   {
     id: 'assortment-pack', name: 'Assortment collection', subtitle: 'Two cans each of our three teas', subtitlePrefix: '6 cans -', origin: 'A mix of all three teas',
-    description: 'A six-can variety pack with two cans each of Green Tea, Ceylon Black, and Da Hong Pao.',
+    description: 'A six-can variety pack with two cans each of Green Tea, Ceylon Black and Da Hong Pao.',
     assortment: [
       { id: 'green-tea', quantity: 2 },
       { id: 'ceylon-black', quantity: 2 },
