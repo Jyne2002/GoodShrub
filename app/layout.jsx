@@ -2,10 +2,10 @@
 import { Header, Footer } from './components/SiteChrome';
 
 export const metadata = {
-  title: 'goodshrub cold brew tea',
+  title: 'Goodshrub | Cold Brew Tea',
   description: 'Discover Goodshrub single-origin sparkling iced teas.',
   icons: { icon: '/favicon.svg' },
-  openGraph: { type: 'website', siteName: 'Goodshrub', title: 'goodshrub cold brew tea', description: 'Discover Goodshrub single-origin sparkling iced teas.' },
+  openGraph: { type: 'website', siteName: 'Goodshrub', title: 'Goodshrub | Cold Brew Tea', description: 'Discover Goodshrub single-origin sparkling iced teas.' },
   twitter: { card: 'summary' },
 };
 export const viewport = { themeColor: '#49574d' };
