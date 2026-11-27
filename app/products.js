@@ -14,7 +14,7 @@
       brewing: ['Cold-brewed for one hour without heat. Enzyme-assisted extraction helps release flavour compounds at low temperatures for a smoother, less bitter cup.', 'Ascorbic acid (Vitamin C) is included to help preserve freshness.'],
       qualityHighlights: ['No sugar detected', 'No fat detected', 'Laboratory tested by SGS Lanka', 'Microbiological testing conducted'],
     },
-    price: 20, color: '#d9e2c9',
+    price: 14.9, color: '#d9e2c9',
   },
   {
     id: 'ceylon-black', name: 'Ceylon Black', subtitle: 'Grown in a rich tropical rainforest', origin: 'Lumbini Valley, Sri Lanka',
@@ -30,7 +30,7 @@
       brewing: ['Cold-brewed for one hour without heat. Enzyme-assisted extraction helps release flavour compounds at low temperatures for a smoother, less bitter cup.', 'Ascorbic acid (Vitamin C) is included to help preserve freshness.'],
       qualityHighlights: ['No sugar detected', 'No fat detected', 'Laboratory tested by SGS Lanka', 'Microbiological testing conducted'],
     },
-    price: 20, color: '#ead8c7',
+    price: 14.9, color: '#ead8c7',
   },
   {
     id: 'da-hong-pao', name: 'Da Hong Pao', subtitle: 'A remarkable oolong', origin: 'Wuyi Mountains, China',
@@ -47,7 +47,7 @@
       brewing: ['Cold-brewed for one hour without heat. Enzyme-assisted extraction helps release flavour compounds at low temperatures for a smoother, less bitter cup.', 'Ascorbic acid (Vitamin C) is included to help preserve freshness.'],
       qualityHighlights: ['No sugar detected', 'No fat detected', 'Laboratory tested by SGS Lanka', 'Microbiological testing conducted'],
     },
-    price: 20, color: '#e9dfc9',
+    price: 14.9, color: '#e9dfc9',
   },
 ];
 

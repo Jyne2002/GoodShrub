@@ -20,7 +20,7 @@ export default function ProductsPage() {
             <p className="product-card-subtitle">{product.subtitle}</p>
             <p className="product-card-description">{product.description}</p>
             <div className="product-card-footer">
-              <p>{formatPrice(product.price)} <span>per 12-pack</span></p>
+              <p>{formatPrice(product.price)} <span>per 6-pack</span></p>
               <a className="button button-dark" href={productHref}>View tea</a>
             </div>
           </div>
