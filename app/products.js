@@ -49,6 +49,16 @@
     },
     price: 14.9, color: '#e9dfc9',
   },
+  {
+    id: 'assortment-pack', name: 'Assortment collection', subtitle: 'Two cans each of our three teas', subtitlePrefix: '6 cans -', origin: 'A mix of all three teas',
+    description: 'A six-can variety pack with two cans each of Green Tea, Ceylon Black, and Da Hong Pao.',
+    assortment: [
+      { id: 'green-tea', quantity: 2 },
+      { id: 'ceylon-black', quantity: 2 },
+      { id: 'da-hong-pao', quantity: 2 },
+    ],
+    price: 14.9, color: '#e4eadf',
+  },
 ];
 
 export const whatsappNumber = '13648886830';

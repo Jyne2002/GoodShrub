@@ -1,4 +1,29 @@
+import { products } from '../products';
+
 export default function ProductDetails({ product }) {
+  if (product.assortment) {
+    return <section className="product-details" aria-labelledby={`product-details-${product.id}`}>
+      <div className="product-details-story">
+        <p className="eyebrow">Pack contents</p>
+        <h2 id={`product-details-${product.id}`}>Three teas. Two cans each.</h2>
+        <p>This mixed 6-pack brings together Green Tea, Ceylon Black, and Da Hong Pao, with two cans of each.</p>
+      </div>
+      <div className="product-details-card">
+        <h3>Inside this 6-pack</h3>
+        <dl className="product-details-list">
+          {product.assortment.map(({ id, quantity }) => {
+            const tea = products.find((item) => item.id === id);
+            return tea && <div key={id}>
+              <dt><a href={`/products/${tea.id}/`}>{tea.name}</a></dt>
+              <dd>{quantity} cans</dd>
+            </div>;
+          })}
+        </dl>
+        <p>Visit each tea’s product page for its ingredients and product information.</p>
+      </div>
+    </section>;
+  }
+
   const { details } = product;
 
   return <section className="product-details" aria-labelledby={`product-details-${product.id}`}>

@@ -493,6 +493,8 @@ body {
 .product-visual img { position: relative; width: min(85%, 560px); height: auto; }
 .product-visual-photo::before { display: none; }
 .product-visual.product-visual-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.product-visual-assortment { background: linear-gradient(145deg, #edf1e8, #e3eadc); }
+.assortment-coming-soon { position: relative; z-index: 1; color: #344b3b; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .gallery-thumbnails { display: flex; gap: 10px; margin-top: 12px; }
 .gallery-thumbnail { width: 76px; height: 76px; padding: 0; overflow: hidden; border: 2px solid transparent; background: #fff; cursor: pointer; }
 .gallery-thumbnail[aria-pressed="true"] { border-color: #344b3b; }
@@ -505,6 +507,7 @@ body {
 .product-info { max-width: 560px; padding: 20px 0; container-type: inline-size; }
 .product-page .product-info h1 { color: #334b3b; font-size: clamp(1.65rem, 12cqi, 5.5rem); white-space: nowrap; }
 .product-subtitle { font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 600; line-height: 1.3; }
+.subtitle-prefix { font-weight: 400; }
 .product-description, .contact-intro > p:not(.eyebrow), .contact-card > p:not(.eyebrow), .cart-summary p, .empty-cart p { color: #515b50; font-size: 1rem; line-height: 1.8; }
 .product-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; padding: 22px 0; border-top: 1px solid #cbd3c4; border-bottom: 1px solid #cbd3c4; }
 .product-meta span, .contact-details span { display: block; margin-bottom: 7px; color: #536653; font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
@@ -533,6 +536,7 @@ body {
 .product-details-list { display: grid; gap: 15px; margin: 0; }
 .product-details-list div { padding-top: 13px; border-top: 1px solid #b7c6b1; }
 .product-details-list dt { margin-bottom: 5px; color: #536653; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.product-details-list dt a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .product-details-list dd { margin: 0; color: #343c34; font-size: .9rem; line-height: 1.6; }
 .product-quality-list { display: grid; gap: 8px; margin: 0; padding-left: 20px; color: #515b50; font-size: .9rem; line-height: 1.6; }
 .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -540,6 +544,8 @@ body {
 .product-card-art { display: block; aspect-ratio: 1; overflow: hidden; padding: 18px; background: color-mix(in srgb, var(--product-color) 42%, white); }
 .product-card-art img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
 .product-card-art:hover img { transform: scale(1.04); }
+.product-card-art-text { display: flex; align-items: center; justify-content: center; color: #344b3b; text-align: center; text-decoration: none; background: linear-gradient(145deg, #edf1e8, #e3eadc); }
+.product-card-coming-soon { color: #344b3b; font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .product-card-copy { display: flex; flex: 1; flex-direction: column; padding: 24px; }
 .product-card-copy .eyebrow { margin-bottom: 10px; font-size: .65rem; }
 .product-card-copy h2 { margin-bottom: 8px; color: #334b3b; font-size: clamp(1.65rem, 2.4vw, 2.3rem); }
@@ -557,6 +563,7 @@ body {
 .cart-item { display: flex; gap: 28px; padding: 22px 0; border-top: 1px solid #cbd3c4; }
 .cart-image { display: flex; flex: 0 0 150px; align-items: center; justify-content: center; height: 160px; background: var(--product-color); }
 .cart-image img { width: 100%; }
+.cart-image-coming-soon { padding: 10px; color: #344b3b; background: linear-gradient(145deg, #edf1e8, #e3eadc); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-align: center; text-decoration: none; text-transform: uppercase; }
 .cart-item-info h2 { margin: 0 0 8px; font-size: 1.7rem; }
 .cart-item-info h2 a { color: inherit; text-decoration: none; }
 .cart-item-info p { margin-bottom: 7px; color: #657263; font-size: .85rem; }

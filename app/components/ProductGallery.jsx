@@ -11,11 +11,19 @@ const extraImages = {
 };
 
 export default function ProductGallery({ product }) {
+  const [selected, setSelected] = useState(0);
+  if (product.assortment) {
+    return <div className="product-gallery">
+      <div className="product-visual product-visual-assortment" style={{ '--product-color': product.color }}>
+        <span className="assortment-coming-soon">Coming Soon</span>
+      </div>
+    </div>;
+  }
+
   const images = [
     { src: `/assets/brand/${product.id}.png`, alt: `Goodshrub ${product.name} sparkling iced tea can` },
     ...(extraImages[product.id] || []),
   ];
-  const [selected, setSelected] = useState(0);
   return <div className="product-gallery">
     <div className={`product-visual${selected ? ' product-visual-photo' : ''}`} style={{ '--product-color': product.color }}>
       {selected === 0 && <span className="visual-label">GOOD TEA.<br />GOOD MOMENTS.</span>}
